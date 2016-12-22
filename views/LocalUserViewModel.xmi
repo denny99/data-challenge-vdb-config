@@ -692,7 +692,7 @@
       <tags xmi:uuid="mmuuid:9a3c6ef4-3d2f-4382-a9d5-d5669a453626" key="REST:charset" value="UTF-8"/>
     </annotations>
     <annotations xmi:uuid="mmuuid:16119ce4-5f55-4e6d-a55c-c2e38ccc6f5e" annotatedObject="mmuuid/f7463421-ae67-4b3b-a504-6a94c3f834f4">
-      <tags xmi:uuid="mmuuid:c816f44f-3b53-4d36-a454-11f13f26c74d" key="REST:URI" value="users/{userId}"/>
+      <tags xmi:uuid="mmuuid:c816f44f-3b53-4d36-a454-11f13f26c74d" key="REST:URI" value="users/{userId}/{provider}"/>
       <tags xmi:uuid="mmuuid:87ecc115-90d9-4057-a330-b16410a9114b" key="REST:METHOD" value="GET"/>
       <tags xmi:uuid="mmuuid:86f59622-ce2c-46f5-92bb-454186a9f66f" key="REST:charset" value="UTF-8"/>
     </annotations>
@@ -745,7 +745,7 @@
     </transformationMappings>
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:4a870b7e-9e5c-42fe-a621-2e585895e4c0" outputs="mmuuid/f7463421-ae67-4b3b-a504-6a94c3f834f4" target="mmuuid/f7463421-ae67-4b3b-a504-6a94c3f834f4">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:a16253f8-acdf-4adf-8ff8-473e61538a21">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:cb2989a5-1d6e-4a7e-acc7-8a0a1519e73b" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(userId, share, xingId, linkedInId, username, password)) AS xml_out FROM Local_User_DB.users AS u WHERE LocalUserViewModel.getUserById.userId = u.userId;&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:cb2989a5-1d6e-4a7e-acc7-8a0a1519e73b" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(u.userId, u.share, u.xingId, u.linkedInId, u.username, u.password)) AS xml_out FROM Local_User_DB.users AS u WHERE CASE LocalUserViewModel.getUserById.provider WHEN 'basic' THEN LocalUserViewModel.getUserById.userId = CONVERT(u.userId, string) WHEN 'xing' THEN LocalUserViewModel.getUserById.userId = u.xingId WHEN 'linkedIn' THEN LocalUserViewModel.getUserById.userId = u.linkedInId END;&#xa;END"/>
         <aliases xmi:uuid="mmuuid:09608fcf-0069-4239-81b4-32b0cb5403fc" alias="u">
           <aliasedObject href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
         </aliases>
@@ -812,8 +812,11 @@
     </result>
   </relational:Procedure>
   <relational:Procedure xmi:uuid="mmuuid:f7463421-ae67-4b3b-a504-6a94c3f834f4" name="getUserById">
-    <parameters xmi:uuid="mmuuid:6ae0d926-947d-45dc-aeca-80b8a0ab2a91" name="userId" length="4000" nullable="NULLABLE_UNKNOWN" radix="0">
-      <type href="http://www.w3.org/2001/XMLSchema#int"/>
+    <parameters xmi:uuid="mmuuid:6ae0d926-947d-45dc-aeca-80b8a0ab2a91" name="userId" length="45" nullable="NULLABLE_UNKNOWN" radix="0">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:a807961e-37a4-46d6-ba86-830bebb15fae" name="provider" length="45">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <result xmi:uuid="mmuuid:ed845cfd-03db-4ba7-bfb6-af08d2fa3f70" name="User">
       <columns xmi:uuid="mmuuid:45425dd7-5b16-4708-89af-d5210c453f25" name="xml_out" radix="0">
