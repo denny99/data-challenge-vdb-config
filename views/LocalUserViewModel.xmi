@@ -687,7 +687,7 @@
       <tags xmi:uuid="mmuuid:d63d99b5-40a2-496a-8ea1-27263f4d605d" key="REST:charset" value="UTF-8"/>
     </annotations>
     <annotations xmi:uuid="mmuuid:b9ceadf8-6db9-495a-8337-de450b211dfe" annotatedObject="mmuuid/43db5a9f-c908-4063-a51e-bedf9972b39c">
-      <tags xmi:uuid="mmuuid:eb04dc97-13c3-49e7-8d5a-8305f680b906" key="REST:URI" value="users/{username}/{password}"/>
+      <tags xmi:uuid="mmuuid:eb04dc97-13c3-49e7-8d5a-8305f680b906" key="REST:URI" value="users/{userId}"/>
       <tags xmi:uuid="mmuuid:d1dff51d-1bf5-4be3-9af0-86591c7e3f17" key="REST:METHOD" value="POST"/>
       <tags xmi:uuid="mmuuid:9a3c6ef4-3d2f-4382-a9d5-d5669a453626" key="REST:charset" value="UTF-8"/>
     </annotations>
@@ -702,7 +702,7 @@
       <tags xmi:uuid="mmuuid:463a44c8-ff1a-4e5f-9271-d1e7b55977f8" key="REST:charset" value="UTF-8"/>
     </annotations>
     <annotations xmi:uuid="mmuuid:c924d5e2-edc8-4822-8234-6fa52b0d6897" annotatedObject="mmuuid/718dcadc-4ad7-4b24-9fa3-ca71a629b27e">
-      <tags xmi:uuid="mmuuid:f5721e1d-4208-4a91-813e-b05605559611" key="REST:URI" value="users/{userId}/{share}/{username}/{password}"/>
+      <tags xmi:uuid="mmuuid:f5721e1d-4208-4a91-813e-b05605559611" key="REST:URI" value="users/{userId}/{share}/{username}/{password}/{xingId}/{xingAccessToken}/{linkedInId}/{linkedInAccessToken}"/>
       <tags xmi:uuid="mmuuid:275fcbc5-8b69-4996-ad5e-cf8f7751d7b7" key="REST:METHOD" value="PUT"/>
       <tags xmi:uuid="mmuuid:e1604072-17fe-4f1c-961e-18519eede9dd" key="REST:charset" value="UTF-8"/>
     </annotations>
@@ -710,7 +710,7 @@
   <transformation:TransformationContainer xmi:uuid="mmuuid:49c6cda3-c7da-49fb-aa8d-ebf7fb4be5a9">
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:850ae7a8-eb6b-4adc-8ccb-c8e4bde086f7" outputs="mmuuid/3263d3c2-c62c-42b5-81d5-642ecb220d0a" target="mmuuid/3263d3c2-c62c-42b5-81d5-642ecb220d0a">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:42a588e9-13de-4728-8ce8-31b75e488de2">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:7a7f17b2-c873-4755-b7fe-f10b9da9f5c7" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME users, XMLAGG(XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(userId, share, xingId, linkedInId)))) AS xml_out FROM Local_User_DB.users AS u;&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:7a7f17b2-c873-4755-b7fe-f10b9da9f5c7" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME users, XMLAGG(XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(userId, share, xingId, linkedInId, username, password, xingAccessToken, linkedInAccessToken)))) AS xml_out FROM Local_User_DB.users AS u;&#xa;END"/>
         <aliases xmi:uuid="mmuuid:047f50a4-f136-4ccc-a763-60a19ca6e8b9" alias="u">
           <aliasedObject href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
         </aliases>
@@ -720,32 +720,26 @@
         <inputs href="../sources/Local_User_DB.xmi#mmuuid/0180df47-8bd5-4e45-b700-633739a2247f"/>
         <inputs href="../sources/Local_User_DB.xmi#mmuuid/487bfada-e122-4314-b1c1-96a2d4d4697b"/>
         <inputs href="../sources/Local_User_DB.xmi#mmuuid/7287208a-7750-408b-b03b-f0ff745cc1a1"/>
+        <inputs href="../sources/Local_User_DB.xmi#mmuuid/be187751-920b-48a8-95f8-5a85c5d64125"/>
+        <inputs href="../sources/Local_User_DB.xmi#mmuuid/2833cc47-2fa0-47c3-84e1-e7d427438d00"/>
+        <inputs href="../sources/Local_User_DB.xmi#mmuuid/ff6f1f19-5ee0-4486-a752-42f8a2d494aa"/>
+        <inputs href="../sources/Local_User_DB.xmi#mmuuid/e6c305b3-3f77-499a-895d-9e9ddaab83fb"/>
       </nested>
       <inputs href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
     </transformationMappings>
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:9173a935-43c0-400f-b0d4-7f8644b1c4b8" outputs="mmuuid/43db5a9f-c908-4063-a51e-bedf9972b39c" target="mmuuid/43db5a9f-c908-4063-a51e-bedf9972b39c">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:444aaa6f-3739-45ba-aafc-c5425d28d2ab">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:acb2f7bf-f737-47e7-b995-fe999076870f" selectSql="BEGIN&#xa;&#x9;INSERT INTO Local_User_DB.users (Local_User_DB.users.username, Local_User_DB.users.password) VALUES (LocalUserViewModel.insertUser.username, LocalUserViewModel.insertUser.password);&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(u.userId, u.share, u.xingId, u.linkedInId, u.username, u.password)) AS xml_out FROM Local_User_DB.users AS u WHERE (LocalUserViewModel.insertUser.password = password) AND (LocalUserViewModel.insertUser.username = username);&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:acb2f7bf-f737-47e7-b995-fe999076870f" selectSql="BEGIN&#xa;&#x9;INSERT INTO Local_User_DB.users (userId) VALUES (LocalUserViewModel.insertUser.userId);&#xa;&#x9;SELECT XMLCOMMENT('insert complete') AS xml_out;&#xa;END"/>
         <aliases xmi:uuid="mmuuid:0adce645-6e9b-44dd-8ff7-929fd55efb30" alias="users">
           <aliasedObject href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
         </aliases>
-        <aliases xmi:uuid="mmuuid:d3f135f7-3904-42b9-b6d6-285e00a8cf31" alias="u">
-          <aliasedObject href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
-        </aliases>
       </helper>
-      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:120ed612-0844-4bb5-b351-0e1102bca265" outputs="mmuuid/fec3c20b-89c8-43dd-a717-bc4794876f16">
-        <inputs href="../sources/Local_User_DB.xmi#mmuuid/be187751-920b-48a8-95f8-5a85c5d64125"/>
-        <inputs href="../sources/Local_User_DB.xmi#mmuuid/59f1e75a-80d5-4157-88e8-9f10361eb51e"/>
-        <inputs href="../sources/Local_User_DB.xmi#mmuuid/0180df47-8bd5-4e45-b700-633739a2247f"/>
-        <inputs href="../sources/Local_User_DB.xmi#mmuuid/7287208a-7750-408b-b03b-f0ff745cc1a1"/>
-        <inputs href="../sources/Local_User_DB.xmi#mmuuid/ff6f1f19-5ee0-4486-a752-42f8a2d494aa"/>
-        <inputs href="../sources/Local_User_DB.xmi#mmuuid/487bfada-e122-4314-b1c1-96a2d4d4697b"/>
-      </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:120ed612-0844-4bb5-b351-0e1102bca265" outputs="mmuuid/fec3c20b-89c8-43dd-a717-bc4794876f16"/>
       <inputs href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
     </transformationMappings>
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:4a870b7e-9e5c-42fe-a621-2e585895e4c0" outputs="mmuuid/f7463421-ae67-4b3b-a504-6a94c3f834f4" target="mmuuid/f7463421-ae67-4b3b-a504-6a94c3f834f4">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:a16253f8-acdf-4adf-8ff8-473e61538a21">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:cb2989a5-1d6e-4a7e-acc7-8a0a1519e73b" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(u.userId, u.share, u.xingId, u.linkedInId, u.username, u.password)) AS xml_out FROM Local_User_DB.users AS u WHERE CASE LocalUserViewModel.getUserById.provider WHEN 'basic' THEN LocalUserViewModel.getUserById.userId = CONVERT(u.userId, string) WHEN 'xing' THEN LocalUserViewModel.getUserById.userId = u.xingId WHEN 'linkedIn' THEN LocalUserViewModel.getUserById.userId = u.linkedInId END;&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:cb2989a5-1d6e-4a7e-acc7-8a0a1519e73b" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(userId, share, xingId, linkedInId, username, password, xingAccessToken, linkedInAccessToken)) AS xml_out FROM Local_User_DB.users AS u WHERE CASE provider WHEN 'basic' THEN LocalUserViewModel.getUserById.userId = userId WHEN 'xing' THEN LocalUserViewModel.getUserById.userId = xingId WHEN 'linkedIn' THEN LocalUserViewModel.getUserById.userId = linkedInId END;&#xa;END"/>
         <aliases xmi:uuid="mmuuid:09608fcf-0069-4239-81b4-32b0cb5403fc" alias="u">
           <aliasedObject href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
         </aliases>
@@ -757,6 +751,8 @@
         <inputs href="../sources/Local_User_DB.xmi#mmuuid/487bfada-e122-4314-b1c1-96a2d4d4697b"/>
         <inputs href="../sources/Local_User_DB.xmi#mmuuid/7287208a-7750-408b-b03b-f0ff745cc1a1"/>
         <inputs href="../sources/Local_User_DB.xmi#mmuuid/ff6f1f19-5ee0-4486-a752-42f8a2d494aa"/>
+        <inputs href="../sources/Local_User_DB.xmi#mmuuid/2833cc47-2fa0-47c3-84e1-e7d427438d00"/>
+        <inputs href="../sources/Local_User_DB.xmi#mmuuid/e6c305b3-3f77-499a-895d-9e9ddaab83fb"/>
       </nested>
       <inputs href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
     </transformationMappings>
@@ -772,7 +768,7 @@
     </transformationMappings>
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:07e1ad4e-68c2-4d40-aaf3-d4daefab388a" outputs="mmuuid/718dcadc-4ad7-4b24-9fa3-ca71a629b27e" target="mmuuid/718dcadc-4ad7-4b24-9fa3-ca71a629b27e">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:6205998a-aee6-4d32-8c5b-f5edde960d2d">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:5a0dbeb2-48f7-4039-9841-f0ccff36502d" selectSql="BEGIN&#xa;&#x9;UPDATE Local_User_DB.users SET share = LocalUserViewModel.updateUser.share, username = LocalUserViewModel.updateUser.username, password = LocalUserViewModel.updateUser.password WHERE LocalUserViewModel.updateUser.userId = Local_User_DB.users.userId;&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(userId, share, xingId, linkedInId, username, password)) AS xml_out FROM Local_User_DB.users AS u WHERE LocalUserViewModel.updateUser.userId = userId;&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:5a0dbeb2-48f7-4039-9841-f0ccff36502d" selectSql="BEGIN&#xa;&#x9;UPDATE Local_User_DB.users SET share = LocalUserViewModel.updateUser.share, username = CASE LocalUserViewModel.updateUser.username WHEN 'NULL' THEN null ELSE LocalUserViewModel.updateUser.username END, password = CASE LocalUserViewModel.updateUser.password WHEN 'NULL' THEN null ELSE LocalUserViewModel.updateUser.password END, xingId = CASE LocalUserViewModel.updateUser.xingId WHEN 'NULL' THEN null ELSE LocalUserViewModel.updateUser.xingId END, linkedInId = CASE LocalUserViewModel.updateUser.linkedInId WHEN 'NULL' THEN null ELSE LocalUserViewModel.updateUser.linkedInId END, xingAccessToken = CASE LocalUserViewModel.updateUser.xingAccessToken WHEN 'NULL' THEN null ELSE LocalUserViewModel.updateUser.xingAccessToken END, linkedInAccessToken = CASE LocalUserViewModel.updateUser.linkedInAccessToken WHEN 'NULL' THEN null ELSE LocalUserViewModel.updateUser.linkedInAccessToken END WHERE LocalUserViewModel.updateUser.userId = userId;&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(userId, share, xingId, linkedInId, username, password, xingAccessToken, linkedInAccessToken)) AS xml_out FROM Local_User_DB.users AS u WHERE LocalUserViewModel.updateUser.userId = userId;&#xa;END"/>
         <aliases xmi:uuid="mmuuid:e62a7da6-2bf6-4462-bcdf-c8d74c96a3d1" alias="users">
           <aliasedObject href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
         </aliases>
@@ -787,6 +783,8 @@
         <inputs href="../sources/Local_User_DB.xmi#mmuuid/487bfada-e122-4314-b1c1-96a2d4d4697b"/>
         <inputs href="../sources/Local_User_DB.xmi#mmuuid/7287208a-7750-408b-b03b-f0ff745cc1a1"/>
         <inputs href="../sources/Local_User_DB.xmi#mmuuid/ff6f1f19-5ee0-4486-a752-42f8a2d494aa"/>
+        <inputs href="../sources/Local_User_DB.xmi#mmuuid/2833cc47-2fa0-47c3-84e1-e7d427438d00"/>
+        <inputs href="../sources/Local_User_DB.xmi#mmuuid/e6c305b3-3f77-499a-895d-9e9ddaab83fb"/>
       </nested>
       <inputs href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
     </transformationMappings>
@@ -799,10 +797,7 @@
     </result>
   </relational:Procedure>
   <relational:Procedure xmi:uuid="mmuuid:43db5a9f-c908-4063-a51e-bedf9972b39c" name="insertUser">
-    <parameters xmi:uuid="mmuuid:6d0fe2e0-d690-41f9-9eae-929c463d53a5" name="username" length="4000" nullable="NULLABLE_UNKNOWN" radix="0">
-      <type href="http://www.w3.org/2001/XMLSchema#string"/>
-    </parameters>
-    <parameters xmi:uuid="mmuuid:5d5ff1d4-f811-47a7-8f46-189bb99cbe99" name="password" length="4000" nullable="NULLABLE_UNKNOWN" radix="0">
+    <parameters xmi:uuid="mmuuid:b7ab3fcd-d34a-49c0-838f-aad929dfa932" name="userId" length="45">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <result xmi:uuid="mmuuid:f50bad08-da33-4965-a118-b0b6a7bc16b8" name="User">
@@ -826,8 +821,8 @@
     </result>
   </relational:Procedure>
   <relational:Procedure xmi:uuid="mmuuid:cdb6e53f-bca5-491e-a231-cf9f99e6270b" name="deleteUser">
-    <parameters xmi:uuid="mmuuid:8b77f9a0-80ee-4322-8267-d87d3b4ccd35" name="userId" length="4000" nullable="NULLABLE_UNKNOWN" radix="0">
-      <type href="http://www.w3.org/2001/XMLSchema#int"/>
+    <parameters xmi:uuid="mmuuid:8b77f9a0-80ee-4322-8267-d87d3b4ccd35" name="userId" length="45" nullable="NULLABLE_UNKNOWN" radix="0">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <result xmi:uuid="mmuuid:21eba15f-2a3a-4d32-a0e0-7511cb7f684a" name="Result">
       <columns xmi:uuid="mmuuid:38107276-5b99-472c-a4ce-7cd838fd4e8e" name="xml_out" radix="0">
@@ -837,8 +832,8 @@
     </result>
   </relational:Procedure>
   <relational:Procedure xmi:uuid="mmuuid:718dcadc-4ad7-4b24-9fa3-ca71a629b27e" name="updateUser">
-    <parameters xmi:uuid="mmuuid:914b3cce-893d-47df-9d94-cacd0dd825ab" name="userId" length="4000" nullable="NULLABLE_UNKNOWN" radix="0">
-      <type href="http://www.w3.org/2001/XMLSchema#int"/>
+    <parameters xmi:uuid="mmuuid:914b3cce-893d-47df-9d94-cacd0dd825ab" name="userId" length="45" nullable="NULLABLE_UNKNOWN" radix="0">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <parameters xmi:uuid="mmuuid:a3915fc5-72f0-4810-939a-d97775ec90b5" name="share">
       <type href="http://www.w3.org/2001/XMLSchema#byte"/>
@@ -847,6 +842,18 @@
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <parameters xmi:uuid="mmuuid:9f3b3488-67bb-4ed2-a920-bec5b5c3d7ab" name="password" length="45">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:f1938d86-b856-4f1e-bf05-051227057023" name="xingId" length="45">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:b41b1106-ca5f-49c8-9e13-5500dae5c757" name="linkedInId" length="45">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:3227915f-dcf3-4387-bda5-ecd72b300805" name="xingAccessToken" length="45">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:1e210d36-2506-4e87-96bc-052645fdd6fd" name="linkedInAccessToken" length="45">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <result xmi:uuid="mmuuid:dfa728b8-c95e-4231-8f09-8f9953803c28" name="User">

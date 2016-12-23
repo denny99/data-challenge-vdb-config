@@ -698,6 +698,26 @@
       <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:91ed95a0-6db1-4977-a797-888f4e79841e" outputs="mmuuid/c014abe7-919e-4e29-bfcf-678564ce9ebe"/>
       <inputs href="../sources/XingSourceModel.xmi#mmuuid/a5860c42-5128-48a6-8468-9ccac4aa5a58"/>
     </transformationMappings>
+    <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:be3a2880-1afb-4b43-bfe4-d0b8513c6b85" outputs="mmuuid/06e596e3-6ae6-4e66-8167-16c6117fec54" target="mmuuid/06e596e3-6ae6-4e66-8167-16c6117fec54">
+      <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:9a2b4660-7675-4db1-87c9-d46914af3695">
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:4f4b2bc5-e02e-488a-9f6d-3a28b225c07f" selectSql="BEGIN&#xa;&#x9;DECLARE STRING VARIABLES.qp = QUERYSTRING('http://localhost:9090/translator/xing/getById', oauthversion AS oauthversion, oauthtoken AS oauthtoken, oauthsignature AS oauthsignature, oauthnonce AS oauthnonce, userfields AS userfields, id AS id, oauthsignaturemethod AS oauthsignaturemethod, oauthconsumerkey AS oauthconsumerkey, oauthtimestamp AS oauthtimestamp);&#xa;&#x9;SELECT first_name AS first_name, last_name AS last_name, employment_status AS employment_status, gender AS gender, id AS id, name AS name, begin_date AS begin_date, end_date AS end_date, description AS description, title AS title, industry AS industry FROM (EXEC XingSourceModel.invokeHttp(action => 'GET', endpoint => qp, stream => 'TRUE')) AS f, XMLTABLE('/response/users' PASSING XMLPARSE(DOCUMENT result) COLUMNS first_name string PATH 'first_name/text()', last_name string PATH 'last_name/text()', employment_status string PATH 'employment_status/text()', gender string PATH 'gender/text()', id string PATH 'id/text()', name string PATH 'professional_experience/primary_company/name/text()', begin_date string PATH 'professional_experience/primary_company/begin_date/text()', end_date string PATH 'professional_experience/primary_company/end_date/text()', description string PATH 'professional_experience/primary_company/description/text()', title string PATH 'professional_experience/primary_company/title/text()', industry string PATH 'professional_experience/primary_company/industry/text()') AS A;&#xa;END"/>
+        <aliases xmi:uuid="mmuuid:352b4604-1207-4ab0-a78c-2fe4b07196a2" alias="invokeHttp">
+          <aliasedObject href="../sources/XingSourceModel.xmi#mmuuid/a5860c42-5128-48a6-8468-9ccac4aa5a58"/>
+        </aliases>
+      </helper>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:271bb40e-c24d-4e92-8c8e-5b081f256004" outputs="mmuuid/bfe54a39-87d5-4a2d-b126-9ae45a13944c"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:4ca71e44-b848-4f29-9c6a-e1cd937e49b3" outputs="mmuuid/12275091-9be0-48a0-baf2-fb11a89df755"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:c88bf219-f369-417f-8e25-7cf13ae70ccf" outputs="mmuuid/3fc592ef-d21b-45d3-8379-26918bb04497"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:6b26c393-32ac-4624-97fb-49141d31cd21" outputs="mmuuid/317a5840-fd23-460d-bc9b-6eb506ab1c98"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:ed90b25d-c460-4da2-be56-10b4d838468b" outputs="mmuuid/d77869e8-4156-40b3-a30a-4cb9735f129b"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:a019e1c7-dd17-4b89-91e3-a4a94d02c576" outputs="mmuuid/2e357eec-dabd-46dc-8e25-a3b9d0df02b9"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:429ef4dc-dfeb-4c5d-96cc-ab17156ad83d" outputs="mmuuid/407bd164-b3d8-4396-b8c2-ed009bceb741"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:3e80a695-06c7-465e-8500-753346da64c8" outputs="mmuuid/ba2058bc-9be5-4951-8515-201fb9a4ea08"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:a4f560a0-04a8-429f-8a0c-8a80a57fbe88" outputs="mmuuid/f67bebf9-0956-4c02-8e18-f14cc518d88c"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:b9392bbb-c958-4cdc-9f11-cf993171088c" outputs="mmuuid/9958f8ad-93a1-4dce-9895-40c75624aa3c"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:e7a1f4ee-2beb-44bf-906b-94892832c7ed" outputs="mmuuid/cfe5936d-c0db-44aa-8f45-7bef2df27d9f"/>
+      <inputs href="../sources/XingSourceModel.xmi#mmuuid/a5860c42-5128-48a6-8468-9ccac4aa5a58"/>
+    </transformationMappings>
   </transformation:TransformationContainer>
   <relational:Procedure xmi:uuid="mmuuid:00aaefec-e46d-450d-b966-094d4dfe2d28" name="find">
     <parameters xmi:uuid="mmuuid:7e508229-beb6-4e1b-a16b-bd20b806466e" name="oauthversion">
@@ -759,6 +779,70 @@
         <type href="http://www.w3.org/2001/XMLSchema#string"/>
       </columns>
       <columns xmi:uuid="mmuuid:c014abe7-919e-4e29-bfcf-678564ce9ebe" name="title" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+    </result>
+  </relational:Procedure>
+  <relational:Procedure xmi:uuid="mmuuid:06e596e3-6ae6-4e66-8167-16c6117fec54" name="getById">
+    <parameters xmi:uuid="mmuuid:f0e8992a-c317-4984-8ba7-74685a143433" name="oauthversion">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:1b7aa9a6-2642-4b35-9430-ade6bb31ac82" name="oauthtoken">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:a80103c9-a26e-4914-83b4-4feaa9f3f0c5" name="oauthsignature">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:50d2473f-fe6b-4b2d-b2dc-00089dc6037a" name="oauthnonce">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:75fb40c3-1500-4426-88ae-05fbd0469948" name="userfields">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:2a2ed1bd-30cd-4b0c-a946-15f67c00face" name="id">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:2f3af0fa-c87f-4d2d-9f27-ca1879e1b6ff" name="oauthsignaturemethod">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:0c3cd10b-5c02-4b60-be6c-2e81899345e1" name="oauthconsumerkey">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <parameters xmi:uuid="mmuuid:1880ead2-ffc2-4af7-9c4a-5b0209f48cee" name="oauthtimestamp">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <result xmi:uuid="mmuuid:9579c3a1-c9e1-420d-a7a1-d7ad8cc4b593" name="Result">
+      <columns xmi:uuid="mmuuid:bfe54a39-87d5-4a2d-b126-9ae45a13944c" name="first_name" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:12275091-9be0-48a0-baf2-fb11a89df755" name="last_name" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:3fc592ef-d21b-45d3-8379-26918bb04497" name="employment_status" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:317a5840-fd23-460d-bc9b-6eb506ab1c98" name="gender" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:d77869e8-4156-40b3-a30a-4cb9735f129b" name="id" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:2e357eec-dabd-46dc-8e25-a3b9d0df02b9" name="name" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:407bd164-b3d8-4396-b8c2-ed009bceb741" name="begin_date" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:ba2058bc-9be5-4951-8515-201fb9a4ea08" name="end_date" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:f67bebf9-0956-4c02-8e18-f14cc518d88c" name="description" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:9958f8ad-93a1-4dce-9895-40c75624aa3c" name="title" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:cfe5936d-c0db-44aa-8f45-7bef2df27d9f" name="industry" length="4000">
         <type href="http://www.w3.org/2001/XMLSchema#string"/>
       </columns>
     </result>
