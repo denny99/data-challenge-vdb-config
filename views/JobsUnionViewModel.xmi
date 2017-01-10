@@ -4,6 +4,7 @@
     <modelImports xmi:uuid="mmuuid:f4d272a5-fb4c-495d-bf18-9ed586bfb451" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
     <modelImports xmi:uuid="mmuuid:5bddcac7-7a54-4965-9bd0-f81c84b89e4b" name="GlassdoorViewModel" modelLocation="GlassdoorViewModel.xmi" uuid="mmuuid:57d2ee2f-e1f6-4113-8911-ba7875b02de9" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
     <modelImports xmi:uuid="mmuuid:6255704c-49e2-414b-b677-4d21f1717c28" name="AdzunaViewModel" modelLocation="AdzunaViewModel.xmi" uuid="mmuuid:dfd2f7c5-df71-43da-844a-c115545002e3" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
+    <modelImports xmi:uuid="mmuuid:391119a0-07bb-4189-9f33-ec4faecd3d0a" name="SimpleDatatypes-instance" modelLocation="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
   </mmcore:ModelAnnotation>
   <diagram:DiagramContainer xmi:uuid="mmuuid:9fa7cca2-cd0d-41e3-8261-1e30a9638cc3">
     <diagram xmi:uuid="mmuuid:3d10ce44-83b1-4679-99c9-e885267db88d" type="packageDiagramType" target="mmuuid/b92c4189-223c-4f6a-811c-cb611077559e">
@@ -677,6 +678,11 @@
     <annotations xmi:uuid="mmuuid:ef4ea303-675f-48db-aa91-ecc2aa203697" annotatedObject="mmuuid/2f8090e8-7269-4bc9-84a7-68bf37e23f93">
       <tags xmi:uuid="mmuuid:52c23848-f05a-4de2-9a56-461e6f0c4ec2" key="en_US" value="The description of this procedure."/>
     </annotations>
+    <annotations xmi:uuid="mmuuid:0c605bf7-b339-4b4a-91de-1e7f5c8197b8" annotatedObject="mmuuid/59322f5e-05b2-4425-a3d4-debcd7cf586b">
+      <tags xmi:uuid="mmuuid:06d00b5d-0d43-49a9-a266-a45664579450" key="REST:charset" value="UTF-8"/>
+      <tags xmi:uuid="mmuuid:63d71c81-26c1-4f2c-b7c0-a5c8714dd1e3" key="REST:METHOD" value="GET"/>
+      <tags xmi:uuid="mmuuid:6c6bb716-4ef4-48ea-b0d6-8f436d54d9bd" key="REST:URI" value="estimate/{country}/{title}/{adzunaAppId}/{adzunaAppKey}/{glassdoorAppId}/{useragent}/{userip}/{glassdoorAppKey}/{countryId}"/>
+    </annotations>
   </mmcore:AnnotationContainer>
   <relational:Procedure xmi:uuid="mmuuid:59322f5e-05b2-4425-a3d4-debcd7cf586b" name="estimate">
     <parameters xmi:uuid="mmuuid:0682fb94-976c-40d6-8609-63b32124f658" name="country">
@@ -707,27 +713,15 @@
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <result xmi:uuid="mmuuid:f3e7eabd-56bf-4dd4-bf49-75803ed8017e" name="Result">
-      <columns xmi:uuid="mmuuid:ba8efc0b-6c54-4019-af29-b293f107a5b8" name="salary_max">
-        <type href="http://www.w3.org/2001/XMLSchema#double"/>
-      </columns>
-      <columns xmi:uuid="mmuuid:54de8bd0-2462-4ee8-96c3-53fdfaef5db0" name="title" length="4000">
-        <type href="http://www.w3.org/2001/XMLSchema#string"/>
-      </columns>
-      <columns xmi:uuid="mmuuid:6504a01f-a817-4654-8fca-7138afa97869" name="salary_min">
-        <type href="http://www.w3.org/2001/XMLSchema#double"/>
-      </columns>
-      <columns xmi:uuid="mmuuid:0f03bad6-22c5-44c3-83e6-969607cfbc11" name="salary_median">
-        <type href="http://www.w3.org/2001/XMLSchema#double"/>
-      </columns>
-      <columns xmi:uuid="mmuuid:1509667b-23b5-441f-b65d-9e4003269231" name="provider" length="4000">
-        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      <columns xmi:uuid="mmuuid:ba8efc0b-6c54-4019-af29-b293f107a5b8" name="xml_out">
+        <type href="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance#XMLLiteral"/>
       </columns>
     </result>
   </relational:Procedure>
   <transformation:TransformationContainer xmi:uuid="mmuuid:90251b61-06f3-4d51-9b83-7c3a4651e3b7">
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:7014f504-3ed1-48a9-ae85-9ec1a2f51cd7" outputs="mmuuid/59322f5e-05b2-4425-a3d4-debcd7cf586b" target="mmuuid/59322f5e-05b2-4425-a3d4-debcd7cf586b">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:cada0af1-50e4-441b-b29c-dd62ee6dfe7c">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:3eb2f501-efd4-4512-a732-72b2b3a1b875" selectSql="BEGIN&#xa;&#x9;SELECT salary_max AS salary_max, title AS title, salary_min AS salary_min, salary_median AS salary_median, 'glassdoor' AS provider FROM (EXEC GlassdoorViewModel.estimate(appId => glassdoorAppId, useragent => useragent, userip => userip, appKey => glassdoorAppKey, title => title, countryId => countryId)) AS g UNION ALL SELECT MAX(salary_max) AS salary_max, MIN(title) AS title, MIN(salary_min) AS salary_min, ((AVG(salary_max) + AVG(salary_min)) / 2) AS salary_median, 'adzuna' AS provider FROM (EXEC AdzunaViewModel.search(country => country, appId => adzunaAppId, appKey => adzunaAppKey, title => title)) AS a GROUP BY provider;&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:3eb2f501-efd4-4512-a732-72b2b3a1b875" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME estimations, XMLAGG(XMLELEMENT(NAME estimation, XMLFOREST(result.salary_max AS salaryMax, result.salary_min AS salaryMin, result.salary_median AS salaryMedian, result.provider AS provider, result.title AS jobTitle)))) AS xml_out FROM (SELECT salary_max AS salary_max, title AS title, salary_min AS salary_min, salary_median AS salary_median, 'glassdoor' AS provider FROM (EXEC GlassdoorViewModel.estimate(appId => glassdoorAppId, useragent => useragent, userip => userip, appKey => glassdoorAppKey, title => title, countryId => countryId)) AS g UNION ALL SELECT MAX(salary_max) AS salary_max, MIN(title) AS title, MIN(salary_min) AS salary_min, ((AVG(salary_max) + AVG(salary_min)) / 2) AS salary_median, 'adzuna' AS provider FROM (EXEC AdzunaViewModel.search(country => country, appId => adzunaAppId, appKey => adzunaAppKey, title => title)) AS a GROUP BY provider) AS result;&#xa;END"/>
         <aliases xmi:uuid="mmuuid:70fda63b-0a5a-43b0-8a5b-dda69f4d1f82" alias="estimate">
           <aliasedObject href="GlassdoorViewModel.xmi#mmuuid/0c3e7978-78ad-4ccc-b6ab-a8bdc01a530f"/>
         </aliases>
@@ -737,17 +731,10 @@
       </helper>
       <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:8cbfee73-571a-4cdf-9360-70520dfa00da" outputs="mmuuid/ba8efc0b-6c54-4019-af29-b293f107a5b8">
         <inputs href="GlassdoorViewModel.xmi#mmuuid/67131392-df18-4348-bea8-2e301530b149"/>
-      </nested>
-      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:d412933a-8fcc-4833-a74c-dab710c28fa0" outputs="mmuuid/54de8bd0-2462-4ee8-96c3-53fdfaef5db0">
+        <inputs href="GlassdoorViewModel.xmi#mmuuid/a4fd03e6-dde9-472d-ac13-8f87f848016f"/>
         <inputs href="GlassdoorViewModel.xmi#mmuuid/f3112512-d65c-4c6c-9f01-4f4b374c8952"/>
-      </nested>
-      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:8006dc7e-4640-4b9e-903b-e6ab115acae0" outputs="mmuuid/6504a01f-a817-4654-8fca-7138afa97869">
         <inputs href="GlassdoorViewModel.xmi#mmuuid/1a71b179-7fb0-4724-a141-cdef3541efa2"/>
       </nested>
-      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:c075d023-4d74-41e1-bc64-1385ad3fa053" outputs="mmuuid/0f03bad6-22c5-44c3-83e6-969607cfbc11">
-        <inputs href="GlassdoorViewModel.xmi#mmuuid/a4fd03e6-dde9-472d-ac13-8f87f848016f"/>
-      </nested>
-      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:fbbfa50c-a744-4611-af41-1d49c064f7e3" outputs="mmuuid/1509667b-23b5-441f-b65d-9e4003269231"/>
       <inputs href="GlassdoorViewModel.xmi#mmuuid/0c3e7978-78ad-4ccc-b6ab-a8bdc01a530f"/>
       <inputs href="AdzunaViewModel.xmi#mmuuid/294bb72c-54bb-4b4f-a015-7a93d4b743d1"/>
     </transformationMappings>
