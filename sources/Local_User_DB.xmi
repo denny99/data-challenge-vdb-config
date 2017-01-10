@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://www.metamatrix.com/metamodels/Diagram" xmlns:jdbc="http://www.metamatrix.com/metamodels/JDBC" xmlns:mmcore="http://www.metamatrix.com/metamodels/Core" xmlns:relational="http://www.metamatrix.com/metamodels/Relational">
   <mmcore:ModelAnnotation xmi:uuid="mmuuid:d86ed222-382b-4912-bd58-691566a9edfc" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational" modelType="PHYSICAL" ProducerName="Teiid Designer" ProducerVersion="10.0.2.Final-v20161108-1636-B72">
-    <modelImports xmi:uuid="mmuuid:4d8b7850-2701-4ecc-a99d-1e3b7d9aa58c" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+    <modelImports xmi:uuid="mmuuid:82151381-c26e-438b-a437-4ee9669a616f" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
   </mmcore:ModelAnnotation>
   <relational:BaseTable xmi:uuid="mmuuid:f3581d43-bfb9-4992-b5b0-f4d607297536" name="users" nameInSource="`data_challenge`.`users`">
     <columns xmi:uuid="mmuuid:487bfada-e122-4314-b1c1-96a2d4d4697b" name="userId" nameInSource="`userId`" nativeType="VARCHAR" length="45" nullable="NO_NULLS" autoIncremented="true" uniqueKeys="mmuuid/889e9021-e66c-482a-8e00-47c541459e86">
@@ -10,22 +10,28 @@
     <columns xmi:uuid="mmuuid:59f1e75a-80d5-4157-88e8-9f10361eb51e" name="share" nameInSource="`share`" nativeType="TINYINT" length="3" fixedLength="true" nullable="NO_NULLS" defaultValue="0">
       <type href="http://www.w3.org/2001/XMLSchema#byte"/>
     </columns>
-    <columns xmi:uuid="mmuuid:7287208a-7750-408b-b03b-f0ff745cc1a1" name="xingId" nameInSource="`xingId`" nativeType="VARCHAR" length="45" indexes="mmuuid/350b5ec6-9fd9-4a41-bcc7-69c494354c5a">
-      <type href="http://www.w3.org/2001/XMLSchema#string"/>
-    </columns>
-    <columns xmi:uuid="mmuuid:0180df47-8bd5-4e45-b700-633739a2247f" name="linkedInId" nameInSource="`linkedInId`" nativeType="VARCHAR" length="45" indexes="mmuuid/7f42f7ba-5512-4023-ad56-8e2335fb3611">
-      <type href="http://www.w3.org/2001/XMLSchema#string"/>
-    </columns>
     <columns xmi:uuid="mmuuid:be187751-920b-48a8-95f8-5a85c5d64125" name="username" nameInSource="`username`" nativeType="VARCHAR" length="45" indexes="mmuuid/dc6505ba-4d68-4950-824f-664fe32b0391">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </columns>
     <columns xmi:uuid="mmuuid:ff6f1f19-5ee0-4486-a752-42f8a2d494aa" name="password" nameInSource="`password`" nativeType="VARCHAR" length="45">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </columns>
+    <columns xmi:uuid="mmuuid:7287208a-7750-408b-b03b-f0ff745cc1a1" name="xingId" nameInSource="`xingId`" nativeType="VARCHAR" length="45" indexes="mmuuid/350b5ec6-9fd9-4a41-bcc7-69c494354c5a">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
     <columns xmi:uuid="mmuuid:e6c305b3-3f77-499a-895d-9e9ddaab83fb" name="xingAccessToken" nameInSource="`xingAccessToken`" nativeType="VARCHAR" length="45" indexes="mmuuid/50851802-e53d-4505-b3ab-0647fd0ffb59">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </columns>
+    <columns xmi:uuid="mmuuid:a76f79e8-ad74-4785-9644-dc70569c7c35" name="xingAccessSecret" nameInSource="`xingAccessSecret`" nativeType="VARCHAR" length="45">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:0180df47-8bd5-4e45-b700-633739a2247f" name="linkedInId" nameInSource="`linkedInId`" nativeType="VARCHAR" length="45" indexes="mmuuid/7f42f7ba-5512-4023-ad56-8e2335fb3611">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
     <columns xmi:uuid="mmuuid:2833cc47-2fa0-47c3-84e1-e7d427438d00" name="linkedInAccessToken" nameInSource="`linkedInAccessToken`" nativeType="VARCHAR" length="45" indexes="mmuuid/fba0d8cb-0fb9-418d-bbe8-dc2baf5643e8">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:cce2c424-b638-43ac-b2ae-213059742fdc" name="linkedInRefreshToken" nameInSource="`linkedInRefreshToken`" nativeType="VARCHAR" length="45" indexes="mmuuid/97a2f4db-a532-48e5-9964-b62cb91bc8df">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </columns>
     <primaryKey xmi:uuid="mmuuid:889e9021-e66c-482a-8e00-47c541459e86" name="PRIMARY" nameInSource="`PRIMARY`" columns="mmuuid/487bfada-e122-4314-b1c1-96a2d4d4697b"/>
@@ -35,6 +41,7 @@
   <relational:Index xmi:uuid="mmuuid:350b5ec6-9fd9-4a41-bcc7-69c494354c5a" name="xingId_UNIQUE" nameInSource="`data_challenge`.`users`.`xingId_UNIQUE`" unique="true" columns="mmuuid/7287208a-7750-408b-b03b-f0ff745cc1a1"/>
   <relational:Index xmi:uuid="mmuuid:fba0d8cb-0fb9-418d-bbe8-dc2baf5643e8" name="linkedInAccessToken_UNIQUE" nameInSource="`data_challenge`.`users`.`linkedInAccessToken_UNIQUE`" unique="true" columns="mmuuid/2833cc47-2fa0-47c3-84e1-e7d427438d00"/>
   <relational:Index xmi:uuid="mmuuid:50851802-e53d-4505-b3ab-0647fd0ffb59" name="xingAccessToken_UNIQUE" nameInSource="`data_challenge`.`users`.`xingAccessToken_UNIQUE`" unique="true" columns="mmuuid/e6c305b3-3f77-499a-895d-9e9ddaab83fb"/>
+  <relational:Index xmi:uuid="mmuuid:97a2f4db-a532-48e5-9964-b62cb91bc8df" name="linkedInRefreshToken_UNIQUE" nameInSource="`data_challenge`.`users`.`linkedInRefreshToken_UNIQUE`" unique="true" columns="mmuuid/cce2c424-b638-43ac-b2ae-213059742fdc"/>
   <mmcore:AnnotationContainer xmi:uuid="mmuuid:a906d753-bf2d-42d5-b739-0904ca685a8f">
     <annotations xmi:uuid="mmuuid:fd33f90e-ee03-4f18-8607-9b7f0253489a" annotatedObject="mmuuid/d86ed222-382b-4912-bd58-691566a9edfc">
       <tags xmi:uuid="mmuuid:131132f2-3eb0-430d-b99f-2b3fe68f81ca" key="connection:driver-class" value="com.mysql.jdbc.Driver"/>
@@ -603,10 +610,11 @@
       <diagramEntity xmi:uuid="mmuuid:571f7de8-1dbe-4e83-98e6-869f068df6d3" modelObject="mmuuid/350b5ec6-9fd9-4a41-bcc7-69c494354c5a"/>
       <diagramEntity xmi:uuid="mmuuid:e54913bd-3506-48ae-b7b4-563525fbfa80" modelObject="mmuuid/fba0d8cb-0fb9-418d-bbe8-dc2baf5643e8" xPosition="20" yPosition="20"/>
       <diagramEntity xmi:uuid="mmuuid:ba736f82-8fa3-4590-8d8b-6c3a04d6fbf4" modelObject="mmuuid/50851802-e53d-4505-b3ab-0647fd0ffb59" xPosition="40" yPosition="30"/>
+      <diagramEntity xmi:uuid="mmuuid:2b227668-6abc-4d7f-861b-3b49fd731fe5" modelObject="mmuuid/97a2f4db-a532-48e5-9964-b62cb91bc8df" xPosition="20" yPosition="20"/>
     </diagram>
   </diagram:DiagramContainer>
-  <jdbc:JdbcSource xmi:uuid="mmuuid:14e28504-1d4b-4dec-9c80-d10ceafa5bd5" name="Local User DB" driverName="MySQL JDBC Driver" driverClass="com.mysql.jdbc.Driver" username="data_challenge" url="jdbc:mysql://localhost:3306/data_challenge">
-    <importSettings xmi:uuid="mmuuid:ae60749c-7789-4ae5-abf6-f1377f89d041" createSchemasInModel="false" includeApproximateIndexes="false">
+  <jdbc:JdbcSource xmi:uuid="mmuuid:5110e7cc-ea12-43b0-9fd1-914b78d7537e" name="Local User DB" driverName="MySQL JDBC Driver" driverClass="com.mysql.jdbc.Driver" username="data_challenge" url="jdbc:mysql://localhost:3306/data_challenge">
+    <importSettings xmi:uuid="mmuuid:31da938e-330f-4787-95d5-4b5e38ee418b" createSchemasInModel="false" includeApproximateIndexes="false">
       <includedCatalogPaths>/data_challenge</includedCatalogPaths>
       <includedTableTypes>LOCAL TEMPORARY</includedTableTypes>
       <includedTableTypes>SYSTEM TABLE</includedTableTypes>
