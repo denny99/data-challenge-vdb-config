@@ -28,10 +28,10 @@
     <columns xmi:uuid="mmuuid:0180df47-8bd5-4e45-b700-633739a2247f" name="linkedInId" nameInSource="`linkedInId`" nativeType="VARCHAR" length="45" indexes="mmuuid/7f42f7ba-5512-4023-ad56-8e2335fb3611">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </columns>
-    <columns xmi:uuid="mmuuid:2833cc47-2fa0-47c3-84e1-e7d427438d00" name="linkedInAccessToken" nameInSource="`linkedInAccessToken`" nativeType="VARCHAR" length="45" indexes="mmuuid/fba0d8cb-0fb9-418d-bbe8-dc2baf5643e8">
+    <columns xmi:uuid="mmuuid:2833cc47-2fa0-47c3-84e1-e7d427438d00" name="linkedInAccessToken" nameInSource="`linkedInAccessToken`" nativeType="VARCHAR" length="180" indexes="mmuuid/fba0d8cb-0fb9-418d-bbe8-dc2baf5643e8">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </columns>
-    <columns xmi:uuid="mmuuid:cce2c424-b638-43ac-b2ae-213059742fdc" name="linkedInRefreshToken" nameInSource="`linkedInRefreshToken`" nativeType="VARCHAR" length="45" indexes="mmuuid/97a2f4db-a532-48e5-9964-b62cb91bc8df">
+    <columns xmi:uuid="mmuuid:cce2c424-b638-43ac-b2ae-213059742fdc" name="linkedInRefreshToken" nameInSource="`linkedInRefreshToken`" nativeType="VARCHAR" length="180" indexes="mmuuid/97a2f4db-a532-48e5-9964-b62cb91bc8df">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </columns>
     <primaryKey xmi:uuid="mmuuid:889e9021-e66c-482a-8e00-47c541459e86" name="PRIMARY" nameInSource="`PRIMARY`" columns="mmuuid/487bfada-e122-4314-b1c1-96a2d4d4697b"/>
