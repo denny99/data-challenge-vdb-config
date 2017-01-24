@@ -716,7 +716,7 @@
   <transformation:TransformationContainer xmi:uuid="mmuuid:49c6cda3-c7da-49fb-aa8d-ebf7fb4be5a9">
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:850ae7a8-eb6b-4adc-8ccb-c8e4bde086f7" outputs="mmuuid/3263d3c2-c62c-42b5-81d5-642ecb220d0a" target="mmuuid/3263d3c2-c62c-42b5-81d5-642ecb220d0a">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:42a588e9-13de-4728-8ce8-31b75e488de2">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:7a7f17b2-c873-4755-b7fe-f10b9da9f5c7" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME users, XMLAGG(XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(userId, share, username, password, xingId, xingAccessToken, xingAccessSecret, linkedInId, linkedInAccessToken, linkedInRefreshToken)))) AS xml_out FROM Local_User_DB.users AS u;&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:7a7f17b2-c873-4755-b7fe-f10b9da9f5c7" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME users, XMLAGG(XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(u.userId, u.share, u.username, u.password, u.xingId, u.xingAccessToken, u.xingAccessSecret, u.linkedInId, u.linkedInAccessToken, u.linkedInRefreshToken)))) AS xml_out FROM Local_User_DB.users AS u;&#xa;END"/>
         <aliases xmi:uuid="mmuuid:047f50a4-f136-4ccc-a763-60a19ca6e8b9" alias="u">
           <aliasedObject href="../sources/Local_User_DB.xmi#mmuuid/f3581d43-bfb9-4992-b5b0-f4d607297536"/>
         </aliases>
