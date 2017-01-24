@@ -675,6 +675,7 @@
   <diagram:DiagramContainer xmi:uuid="mmuuid:ff698125-3fce-4fab-814a-17af91bb1217">
     <diagram xmi:uuid="mmuuid:487889f7-fb6e-44be-9c5d-91c325fa4a10" type="packageDiagramType" target="mmuuid/7e00e0aa-2d65-4cdd-bf0e-b593a048a985">
       <diagramEntity xmi:uuid="mmuuid:7e84169e-cf1c-4a7f-bd43-fd53d6e9942a" modelObject="mmuuid/00aaefec-e46d-450d-b966-094d4dfe2d28" xPosition="10" yPosition="10"/>
+      <diagramEntity xmi:uuid="mmuuid:a8a8337a-8e0b-4143-a17c-9eae61dcf96e" modelObject="mmuuid/06e596e3-6ae6-4e66-8167-16c6117fec54"/>
     </diagram>
   </diagram:DiagramContainer>
   <transformation:TransformationContainer xmi:uuid="mmuuid:09a3dd1f-5d01-427b-9415-25a660bde98b">
@@ -700,7 +701,7 @@
     </transformationMappings>
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:be3a2880-1afb-4b43-bfe4-d0b8513c6b85" outputs="mmuuid/06e596e3-6ae6-4e66-8167-16c6117fec54" target="mmuuid/06e596e3-6ae6-4e66-8167-16c6117fec54">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:9a2b4660-7675-4db1-87c9-d46914af3695">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:4f4b2bc5-e02e-488a-9f6d-3a28b225c07f" selectSql="BEGIN&#xa;&#x9;DECLARE STRING VARIABLES.qp = QUERYSTRING('http://localhost:9090/translator/xing/getById', oauthversion AS oauthversion, oauthtoken AS oauthtoken, oauthsignature AS oauthsignature, oauthnonce AS oauthnonce, userfields AS userfields, id AS id, oauthsignaturemethod AS oauthsignaturemethod, oauthconsumerkey AS oauthconsumerkey, oauthtimestamp AS oauthtimestamp);&#xa;&#x9;SELECT first_name AS first_name, last_name AS last_name, employment_status AS employment_status, gender AS gender, id AS id, name AS name, begin_date AS begin_date, end_date AS end_date, description AS description, title AS title, industry AS industry FROM (EXEC XingSourceModel.invokeHttp(action => 'GET', endpoint => qp, stream => 'TRUE')) AS f, XMLTABLE('/response/users' PASSING XMLPARSE(DOCUMENT result) COLUMNS first_name string PATH 'first_name/text()', last_name string PATH 'last_name/text()', employment_status string PATH 'employment_status/text()', gender string PATH 'gender/text()', id string PATH 'id/text()', name string PATH 'professional_experience/primary_company/name/text()', begin_date string PATH 'professional_experience/primary_company/begin_date/text()', end_date string PATH 'professional_experience/primary_company/end_date/text()', description string PATH 'professional_experience/primary_company/description/text()', title string PATH 'professional_experience/primary_company/title/text()', industry string PATH 'professional_experience/primary_company/industry/text()') AS A;&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:4f4b2bc5-e02e-488a-9f6d-3a28b225c07f" selectSql="BEGIN&#xa;&#x9;DECLARE STRING VARIABLES.qp = QUERYSTRING('http://localhost:9090/translator/xing/getById', XingViewModel.getById.oauthversion AS oauthversion, XingViewModel.getById.oauthtoken AS oauthtoken, XingViewModel.getById.oauthsignature AS oauthsignature, XingViewModel.getById.oauthnonce AS oauthnonce, XingViewModel.getById.id AS id, XingViewModel.getById.oauthsignaturemethod AS oauthsignaturemethod, XingViewModel.getById.oauthconsumerkey AS oauthconsumerkey, XingViewModel.getById.oauthtimestamp AS oauthtimestamp);&#xa;&#x9;SELECT A.first_name AS first_name, A.last_name AS last_name, A.employment_status AS employment_status, A.gender AS gender, A.id AS id, A.name AS name, A.begin_date AS begin_date, A.end_date AS end_date, A.description AS description, A.title AS title, A.industry AS industry FROM (EXEC XingSourceModel.invokeHttp(action => 'GET', endpoint => VARIABLES.qp, stream => 'TRUE')) AS f, XMLTABLE('/response/users' PASSING XMLPARSE(DOCUMENT f.result) COLUMNS first_name string PATH 'first_name/text()', last_name string PATH 'last_name/text()', employment_status string PATH 'employment_status/text()', gender string PATH 'gender/text()', id string PATH 'id/text()', name string PATH 'professional_experience/primary_company/name/text()', begin_date string PATH 'professional_experience/primary_company/begin_date/text()', end_date string PATH 'professional_experience/primary_company/end_date/text()', description string PATH 'professional_experience/primary_company/description/text()', title string PATH 'professional_experience/primary_company/title/text()', industry string PATH 'professional_experience/primary_company/industry/text()') AS A;&#xa;END"/>
         <aliases xmi:uuid="mmuuid:352b4604-1207-4ab0-a78c-2fe4b07196a2" alias="invokeHttp">
           <aliasedObject href="../sources/XingSourceModel.xmi#mmuuid/a5860c42-5128-48a6-8468-9ccac4aa5a58"/>
         </aliases>
@@ -794,9 +795,6 @@
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <parameters xmi:uuid="mmuuid:50d2473f-fe6b-4b2d-b2dc-00089dc6037a" name="oauthnonce">
-      <type href="http://www.w3.org/2001/XMLSchema#string"/>
-    </parameters>
-    <parameters xmi:uuid="mmuuid:75fb40c3-1500-4426-88ae-05fbd0469948" name="userfields">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <parameters xmi:uuid="mmuuid:2a2ed1bd-30cd-4b0c-a946-15f67c00face" name="id">

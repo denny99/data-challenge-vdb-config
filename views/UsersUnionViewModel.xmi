@@ -4,11 +4,13 @@
     <modelImports xmi:uuid="mmuuid:536ad196-d237-4d8e-9f88-e51229bd7791" name="SimpleDatatypes-instance" modelLocation="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
     <modelImports xmi:uuid="mmuuid:81daec8d-d80c-4ffb-b6a2-245ad4f42c9a" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
     <modelImports xmi:uuid="mmuuid:e0182025-2032-485a-8360-0a3f7488ab49" name="XingViewModel" modelLocation="XingViewModel.xmi" uuid="mmuuid:7e00e0aa-2d65-4cdd-bf0e-b593a048a985" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
+    <modelImports xmi:uuid="mmuuid:d0350ecc-ce05-453f-9010-13dbf17b3e81" name="LinkedInViewModel" modelLocation="LinkedInViewModel.xmi" uuid="mmuuid:c5fc65d6-20d8-4b79-81ea-0dff2e179998" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
   </mmcore:ModelAnnotation>
   <diagram:DiagramContainer xmi:uuid="mmuuid:10e13ac3-613e-4ff7-8505-4a708bfb5ba9">
     <diagram xmi:uuid="mmuuid:7dce3695-e05d-4b0e-a88d-55f54b28c499" type="packageDiagramType" target="mmuuid/6a23f952-bff7-4bf0-8dfc-ff720eaaa152">
       <diagramEntity xmi:uuid="mmuuid:46b05537-69db-47eb-8f6d-33f74858c15f" modelObject="mmuuid/3274964e-c85c-43cb-b9ce-edebcf0e76fc" xPosition="20" yPosition="20"/>
-      <diagramEntity xmi:uuid="mmuuid:6afbcfc8-a099-46ef-8779-e826cbf63c5f" modelObject="mmuuid/8e29a733-0210-4e99-8090-b5725e63b8ac"/>
+      <diagramEntity xmi:uuid="mmuuid:6afbcfc8-a099-46ef-8779-e826cbf63c5f" name="getXingById" modelObject="mmuuid/8e29a733-0210-4e99-8090-b5725e63b8ac"/>
+      <diagramEntity xmi:uuid="mmuuid:5df047be-a059-40cb-8d85-738becd16532" modelObject="mmuuid/1ad06759-2e66-42dd-8936-75bf53acced1" xPosition="60" yPosition="40"/>
     </diagram>
   </diagram:DiagramContainer>
   <mmcore:AnnotationContainer xmi:uuid="mmuuid:a1ea1b1b-1fbf-4564-852d-5503eb7d381d">
@@ -679,14 +681,19 @@
       <tags xmi:uuid="mmuuid:7a8efc28-3acd-424b-8ddf-9e7403ca19c9" key="en_US" value="The description of this procedure."/>
     </annotations>
     <annotations xmi:uuid="mmuuid:5f51e6da-e5e2-4f73-8567-bfe1b594f28e" annotatedObject="mmuuid/3274964e-c85c-43cb-b9ce-edebcf0e76fc">
-      <tags xmi:uuid="mmuuid:caf4b0c7-56a4-4367-b039-c64cffefc630" key="REST:URI" value="users/{oauthtoken}/{userfields}/{oauthsignaturemethod}/{oauthsignature}/{oauthconsumerkey}/{keywords}/{oauthnonce}/{oauthversion}/{oauthtimestamp}"/>
+      <tags xmi:uuid="mmuuid:caf4b0c7-56a4-4367-b039-c64cffefc630" key="REST:URI" value="users/{oauthtoken}/{oauthsignaturemethod}/{oauthsignature}/{oauthconsumerkey}/{oauthnonce}/{oauthversion}/{oauthtimestamp}/{userfields}/{keywords}"/>
       <tags xmi:uuid="mmuuid:bd8bf889-a2a4-4b47-abfe-fc8807a6ad55" key="REST:METHOD" value="GET"/>
       <tags xmi:uuid="mmuuid:38aa7059-04ce-4426-9752-edd01fc9ae7a" key="REST:charset" value="UTF-8"/>
     </annotations>
     <annotations xmi:uuid="mmuuid:231ffe8e-e40c-4085-a0ba-912c656f961e" annotatedObject="mmuuid/8e29a733-0210-4e99-8090-b5725e63b8ac">
-      <tags xmi:uuid="mmuuid:3f1c5c8a-255a-4ca7-b9fd-bf7dfc976815" key="REST:URI" value="users/{userId}/{network}/{oauthtoken}/{userfields}/{oauthsignaturemethod}/{oauthsignature}/{oauthconsumerkey}/{keywords}/{oauthnonce}/{oauthversion}/{oauthtimestamp}"/>
+      <tags xmi:uuid="mmuuid:3f1c5c8a-255a-4ca7-b9fd-bf7dfc976815" key="REST:URI" value="users/xing/{userId}/{oauthtoken}/{oauthsignaturemethod}/{oauthsignature}/{oauthconsumerkey}/{oauthnonce}/{oauthversion}/{oauthtimestamp}"/>
       <tags xmi:uuid="mmuuid:3d0197b4-8e3c-45a3-a893-a31682c08676" key="REST:METHOD" value="GET"/>
       <tags xmi:uuid="mmuuid:6ac74aac-167c-48ed-a247-cbbaa0ee5920" key="REST:charset" value="UTF-8"/>
+    </annotations>
+    <annotations xmi:uuid="mmuuid:ea5b46a7-3108-4c26-9a47-21f2b2f1fd51" annotatedObject="mmuuid/1ad06759-2e66-42dd-8936-75bf53acced1">
+      <tags xmi:uuid="mmuuid:54591b67-0b67-42b5-bb1f-c40e014191ce" key="REST:URI" value="users/linkedIn/{accessToken}"/>
+      <tags xmi:uuid="mmuuid:392409d7-0228-4338-88a1-124d211141a2" key="REST:METHOD" value="GET"/>
+      <tags xmi:uuid="mmuuid:f016e8bb-cc20-426d-9d70-7cbc78bc790d" key="REST:charset" value="UTF-8"/>
     </annotations>
   </mmcore:AnnotationContainer>
   <relational:Procedure xmi:uuid="mmuuid:3274964e-c85c-43cb-b9ce-edebcf0e76fc" name="getUsers">
@@ -727,7 +734,7 @@
   <transformation:TransformationContainer xmi:uuid="mmuuid:0fbacc57-1785-471f-a727-a3938c1d0d3e">
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:0db9425e-f3a9-4245-9a2b-3b2685952db0" outputs="mmuuid/3274964e-c85c-43cb-b9ce-edebcf0e76fc" target="mmuuid/3274964e-c85c-43cb-b9ce-edebcf0e76fc">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:67f11cbf-be12-4070-8700-b323581c27b3">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:98958338-3ccc-4794-b5ec-4a64d5823cb6" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(gender AS gender, last_name AS last_name, employment_status AS employment_status, id AS id, first_name AS first_name), XMLELEMENT(NAME employment, XMLFOREST(end_date AS end_date, begin_date AS begin_date, description AS description, industry AS industry, name AS name, title AS title))) AS xml_out FROM (SELECT first_name AS first_name, last_name AS last_name, employment_status AS employment_status, gender AS gender, id AS id, begin_date AS begin_date, end_date AS end_date, name AS name, description AS description, industry AS industry, title AS title FROM (EXEC XingViewModel.find(oauthversion => oauthversion, oauthtoken => oauthtoken, oauthsignature => oauthsignature, keywords => keywords, oauthnonce => oauthnonce, userfields => userfields, oauthsignaturemethod => oauthsignaturemethod, oauthconsumerkey => oauthconsumerkey, oauthtimestamp => oauthtimestamp)) AS x) AS final;&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:98958338-3ccc-4794-b5ec-4a64d5823cb6" selectSql="BEGIN&#xa;&#x9;IF(oauthtoken &lt;> 'NULL')&#xa;&#x9;BEGIN&#xa;&#x9;&#x9;SELECT XMLELEMENT(NAME users, XMLAGG(XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(gender AS gender, last_name AS last_name, employment_status AS employment_status, id AS id, first_name AS first_name), XMLELEMENT(NAME employment, XMLFOREST(end_date AS end_date, begin_date AS begin_date, description AS description, industry AS industry, name AS name, title AS title))))) AS xml_out FROM (SELECT first_name AS first_name, last_name AS last_name, employment_status AS employment_status, gender AS gender, id AS id, begin_date AS begin_date, end_date AS end_date, name AS name, description AS description, industry AS industry, title AS title FROM (EXEC XingViewModel.find(oauthversion => oauthversion, oauthtoken => oauthtoken, oauthsignature => oauthsignature, keywords => keywords, oauthnonce => oauthnonce, userfields => userfields, oauthsignaturemethod => oauthsignaturemethod, oauthconsumerkey => oauthconsumerkey, oauthtimestamp => oauthtimestamp)) AS x) AS final;&#xa;&#x9;END&#xa;END"/>
         <aliases xmi:uuid="mmuuid:7c768fa1-4fec-4194-b2db-b34e150db372" alias="find">
           <aliasedObject href="XingViewModel.xmi#mmuuid/00aaefec-e46d-450d-b966-094d4dfe2d28"/>
         </aliases>
@@ -749,7 +756,7 @@
     </transformationMappings>
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:0acbafe9-1f60-496c-b974-fed6f1b86d10" outputs="mmuuid/8e29a733-0210-4e99-8090-b5725e63b8ac" target="mmuuid/8e29a733-0210-4e99-8090-b5725e63b8ac">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:0525ed3e-8a7f-42e3-acb8-70c1794d5050">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:5aea3373-aaad-4236-9c62-bdd2c6f1351c" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(gender AS gender, last_name AS last_name, employment_status AS employment_status, id AS id, first_name AS first_name), XMLELEMENT(NAME employment, XMLFOREST(end_date AS end_date, begin_date AS begin_date, description AS description, industry AS industry, name AS name, title AS title))) AS xml_out FROM (SELECT first_name AS first_name, last_name AS last_name, employment_status AS employment_status, gender AS gender, id AS id, begin_date AS begin_date, end_date AS end_date, name AS name, description AS description, industry AS industry, title AS title FROM (EXEC XingViewModel.getById(oauthversion => oauthversion, oauthtoken => oauthtoken, oauthsignature => oauthsignature, oauthnonce => oauthnonce, userfields => userfields, id => userId, oauthsignaturemethod => oauthsignaturemethod, oauthconsumerkey => oauthconsumerkey, oauthtimestamp => oauthtimestamp)) AS x) AS final;&#xa;END"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:5aea3373-aaad-4236-9c62-bdd2c6f1351c" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(final.gender AS gender, final.last_name AS last_name, final.employment_status AS employment_status, final.id AS id, final.first_name AS first_name), XMLELEMENT(NAME employment, XMLFOREST(final.end_date AS end_date, final.begin_date AS begin_date, final.description AS description, final.industry AS industry, final.name AS name, final.title AS title))) AS xml_out FROM (SELECT x.first_name AS first_name, x.last_name AS last_name, x.employment_status AS employment_status, x.gender AS gender, x.id AS id, x.begin_date AS begin_date, x.end_date AS end_date, x.name AS name, x.description AS description, x.industry AS industry, x.title AS title FROM (EXEC XingViewModel.getById(oauthversion => UsersUnionViewModel.getXingById.oauthversion, oauthtoken => UsersUnionViewModel.getXingById.oauthtoken, oauthsignature => UsersUnionViewModel.getXingById.oauthsignature, oauthnonce => UsersUnionViewModel.getXingById.oauthnonce, id => UsersUnionViewModel.getXingById.userId, oauthsignaturemethod => UsersUnionViewModel.getXingById.oauthsignaturemethod, oauthconsumerkey => UsersUnionViewModel.getXingById.oauthconsumerkey, oauthtimestamp => UsersUnionViewModel.getXingById.oauthtimestamp)) AS x) AS final;&#xa;END"/>
         <aliases xmi:uuid="mmuuid:c950c31e-55d6-4de7-8951-748af3f72de4" alias="getById">
           <aliasedObject href="XingViewModel.xmi#mmuuid/06e596e3-6ae6-4e66-8167-16c6117fec54"/>
         </aliases>
@@ -769,12 +776,29 @@
       </nested>
       <inputs href="XingViewModel.xmi#mmuuid/06e596e3-6ae6-4e66-8167-16c6117fec54"/>
     </transformationMappings>
+    <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:c3b2db89-3c54-4e34-b3e7-1938d6dc2719" outputs="mmuuid/1ad06759-2e66-42dd-8936-75bf53acced1" target="mmuuid/1ad06759-2e66-42dd-8936-75bf53acced1">
+      <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:b676879a-6506-4ecb-9cc4-46d935532323">
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:8f1e95df-c5b1-4414-bb0e-9c7750824930" selectSql="BEGIN&#xa;&#x9;SELECT XMLELEMENT(NAME &quot;user&quot;, XMLFOREST(final.gender AS gender, final.last_name AS last_name, final.employment_status AS employment_status, final.id AS id, final.first_name AS first_name), XMLELEMENT(NAME employment, XMLFOREST(final.end_date AS end_date, final.begin_date AS begin_date, final.description AS description, final.industry AS industry, final.name AS name, final.title AS title))) AS xml_out FROM (SELECT x.firstName AS first_name, x.lastName AS last_name, x.employment_status AS employment_status, null AS gender, x.id AS id, x.startDate AS begin_date, x.endDate AS end_date, x.name AS name, x.name AS description, x.industry AS industry, x.title AS title FROM (EXEC LinkedInViewModel.getMe(accessToken => UsersUnionViewModel.getLinkedInById.accessToken)) AS x) AS final;&#xa;END"/>
+        <aliases xmi:uuid="mmuuid:d7176256-6f78-4c3a-8e4c-2dbfb8847a1d" alias="getMe">
+          <aliasedObject href="LinkedInViewModel.xmi#mmuuid/f5b6f5b9-16cc-4158-8f61-c28818b63594"/>
+        </aliases>
+      </helper>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:d0d0af04-9e0d-4523-a1ea-598a0717def3" outputs="mmuuid/520a95df-f723-4495-b9c2-2b0f56ff96cc">
+        <inputs href="LinkedInViewModel.xmi#mmuuid/99e23637-2d4f-432c-953b-f07506fb9a09"/>
+        <inputs href="LinkedInViewModel.xmi#mmuuid/f00b44d2-e39c-4614-a221-782c0706a0cf"/>
+        <inputs href="LinkedInViewModel.xmi#mmuuid/801e704a-f91f-4ca9-999a-e44cccbccc41"/>
+        <inputs href="LinkedInViewModel.xmi#mmuuid/efb9b8a4-31d5-431b-94ea-ad682b91de17"/>
+        <inputs href="LinkedInViewModel.xmi#mmuuid/ae6ba7be-7807-4718-8d91-4c79ca9629fd"/>
+        <inputs href="LinkedInViewModel.xmi#mmuuid/40902db2-a687-4c02-aed8-81275a2955cd"/>
+        <inputs href="LinkedInViewModel.xmi#mmuuid/7540102d-be44-4bf2-8ab6-b141f0acf39f"/>
+        <inputs href="LinkedInViewModel.xmi#mmuuid/1c0138c6-c01d-4d1e-b80d-96cca4a31314"/>
+        <inputs href="LinkedInViewModel.xmi#mmuuid/ce95bf4c-f147-45cc-a1fa-91b8f7728633"/>
+      </nested>
+      <inputs href="LinkedInViewModel.xmi#mmuuid/f5b6f5b9-16cc-4158-8f61-c28818b63594"/>
+    </transformationMappings>
   </transformation:TransformationContainer>
-  <relational:Procedure xmi:uuid="mmuuid:8e29a733-0210-4e99-8090-b5725e63b8ac" name="getById">
+  <relational:Procedure xmi:uuid="mmuuid:8e29a733-0210-4e99-8090-b5725e63b8ac" name="getXingById">
     <parameters xmi:uuid="mmuuid:c2355d45-b58c-41b5-99df-af41d8c94f12" name="userId" length="4000" nullable="NULLABLE_UNKNOWN" radix="0">
-      <type href="http://www.w3.org/2001/XMLSchema#string"/>
-    </parameters>
-    <parameters xmi:uuid="mmuuid:c4a6f340-77ca-414c-8171-3940154c6d08" name="network" length="4000" nullable="NULLABLE_UNKNOWN" radix="0">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
     <parameters xmi:uuid="mmuuid:a72ab7f9-f594-49c3-9959-091e3569d6e2" name="oauthversion">
@@ -789,9 +813,6 @@
     <parameters xmi:uuid="mmuuid:818be1b7-d529-4b1a-9f4d-a65ca73819c6" name="oauthnonce">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
-    <parameters xmi:uuid="mmuuid:b5431ab4-d765-4196-a653-8a9006a01331" name="userfields">
-      <type href="http://www.w3.org/2001/XMLSchema#string"/>
-    </parameters>
     <parameters xmi:uuid="mmuuid:0c6b8d58-6f99-4972-8427-dae61a897c29" name="oauthsignaturemethod">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </parameters>
@@ -803,6 +824,17 @@
     </parameters>
     <result xmi:uuid="mmuuid:b2d312ea-6c1c-4355-a653-fe8f2f3c9856" name="User">
       <columns xmi:uuid="mmuuid:1bdf640e-e2c0-44b2-958e-88d18f5bfee9" name="xml_out" radix="0">
+        <nativeType xsi:nil="true"/>
+        <type href="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance#XMLLiteral"/>
+      </columns>
+    </result>
+  </relational:Procedure>
+  <relational:Procedure xmi:uuid="mmuuid:1ad06759-2e66-42dd-8936-75bf53acced1" name="getLinkedInById">
+    <parameters xmi:uuid="mmuuid:d4bc71b1-d471-4eab-91d9-622cb3bc48fb" name="accessToken">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <result xmi:uuid="mmuuid:b400db23-fccb-4303-8daf-94c12f29fac8" name="User">
+      <columns xmi:uuid="mmuuid:520a95df-f723-4495-b9c2-2b0f56ff96cc" name="xml_out" radix="0">
         <nativeType xsi:nil="true"/>
         <type href="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance#XMLLiteral"/>
       </columns>
